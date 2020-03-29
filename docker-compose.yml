@@ -1,0 +1,20 @@
+version: '3.7'
+
+networks: 
+    localhost:
+        driver: bridge
+services: 
+    db:
+        image: mysql:latest
+        restart: always
+        environment: 
+            MYSQL_ROOT_PASSWORD: pass
+            MYSQL_USER: nickml
+            MYSQL_PASSWORD: noword
+            MYSQL_DATABASE: rest.api.service
+        volumes: 
+            - ./data:/var/lib/mysql
+        ports: 
+            - 3336:3306
+        networks: 
+            - localhost
