@@ -9,6 +9,8 @@ const corsOptions = {
   origin: '*',
 };
 
+app.use(express.static('./public'));
+
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
@@ -19,6 +21,7 @@ const db = require('./app/models');
 db.sequelize.sync();
 
 require('./app/routes/v1/user.routes.js')(app);
+require('./app/routes/v1/file.routes.js')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;

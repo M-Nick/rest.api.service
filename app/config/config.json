@@ -1,10 +1,10 @@
 {
   "development": {
     "username": "nickml",
-    "password": null,
-    "database": "chat",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": true
+    "password": "noword",
+    "database": "rest.api.service",
+    "host": "localhost",
+    "port": 3336,
+    "dialect": "mysql"
   }
 }

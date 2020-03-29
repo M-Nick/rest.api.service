@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const validator = require('validator');
+const User = require('../models').User;
+const UserToken = require('../models').UserToken;
 
 const users = [];
 let refreshTokens = [];
@@ -20,7 +22,7 @@ exports.signup = async (req, res) => {
     }
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const user = { id: req.body.id, password: hashedPassword };
-    users.push(user);
+    User.create({ identifier: user.id, password: user.password });
     res.status(201).send();
   } catch (e) {
     console.log(e);
@@ -29,15 +31,25 @@ exports.signup = async (req, res) => {
 };
 
 exports.signin = async (req, res) => {
-  const user = users.find((user) => user.id === req.body.id);
+  const user = await User.findOne({ where: { identifier: req.body.id } });
   if (!user) {
     res.status(400).send(`There is no user with id ${req.body.id}`);
     return;
   }
   try {
     if (await bcrypt.compare(req.body.password, user.password)) {
-      const bearerToken = generateBearertoken(user);
-      const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
+      const bearerToken = generateBearertoken({
+        id: user.identifier,
+        password: user.password,
+      });
+      const refreshToken = jwt.sign(
+        {
+          id: user.identifier,
+          password: user.password,
+        },
+        process.env.REFRESH_TOKEN_SECRET,
+      );
+      UserToken.create({ refreshToken, userId: user.id });
       refreshTokens.push(refreshToken);
       res.json({ bearerToken, refreshToken });
     } else {
@@ -54,7 +66,7 @@ exports.updateToken = async (req, res) => {
   if (!refreshToken) {
     return res.sendStatus(401);
   }
-  if (!refreshTokens.includes(refreshToken)) {
+  if (!UserToken.findOne({ where: { refreshToken } })) {
     return res.sendStatus(403);
   }
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
@@ -70,8 +82,13 @@ exports.info = (req, res) => {
   res.json(req.user);
 };
 
-exports.logout = (req, res) => {
-  refreshTokens = refreshTokens.filter((token) => token !== req.body.token);
+exports.logout = async (req, res) => {
+  token = await UserToken.findOne({
+    where: { refreshToken: req.body.token },
+  });
+  if (token) {
+    await token.destroy();
+  }
   res.sendStatus(204);
 };
 
