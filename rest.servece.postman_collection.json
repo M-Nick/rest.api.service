@@ -1,0 +1,344 @@
+{
+	"info": {
+		"_postman_id": "47427259-4f38-4544-8ad1-49cace966feb",
+		"name": "rest.servece",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "GET User info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5pY2ttbEBlbWFpbC5jb20iLCJpYXQiOjE1ODU0ODgyOTksImV4cCI6MTU4NTQ4ODM1OX0.t0SFwo7Wtr6STMm2ln0yjIuuJBuY41fb_pwqrcAyMzU"
+							}
+						],
+						"url": {
+							"raw": "{{host:port}}/api/v1/info/",
+							"host": [
+								"{{host:port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"info",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST SignUp",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"nickml@email.com\",\n\t\"password\":\"noword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host:port}}/api/v1/signup",
+							"host": [
+								"{{host:port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST SignIn",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"nickml@email.com\",\n\t\"password\":\"noword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host:port}}/api/v1/signin",
+							"host": [
+								"{{host:port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Update token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5pY2ttbEBlbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRackNVZS5RM2txa1haZ0VpRGQ3eXB1UHpHaUU1dmNZZ09BRTZKQlNEOHR5SDVIQVcxYk5vdSIsImlhdCI6MTU4NTUwODE5Mn0.BNtacSeOBb5crPlau4Jri7pGq7yg9nlESLq74NNAMxc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host:port}}/api/v1/signin/new_token",
+							"host": [
+								"{{host:port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"signin",
+								"new_token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Logout",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5pY2ttbEBlbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRackNVZS5RM2txa1haZ0VpRGQ3eXB1UHpHaUU1dmNZZ09BRTZKQlNEOHR5SDVIQVcxYk5vdSIsImlhdCI6MTU4NTUwODE5Mn0.BNtacSeOBb5crPlau4Jri7pGq7yg9nlESLq74NNAMxc\" \n}"
+						},
+						"url": {
+							"raw": "{{host:port}}/api/v1/logout",
+							"host": [
+								"{{host:port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "file",
+			"item": [
+				{
+					"name": "Upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/nickml/my-projects/rest.service/to-upload/1.txt"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host:port}}/api/v1/file/upload",
+							"host": [
+								"{{host:port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"file",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Files",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host:port}}/api/v1/file/list?list_size=100&page=1",
+							"host": [
+								"{{host:port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"file",
+								"list"
+							],
+							"query": [
+								{
+									"key": "list_size",
+									"value": "100"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete file",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host:port}}/api/v1/file/delete/:id",
+							"host": [
+								"{{host:port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"file",
+								"delete",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "File",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host:port}}/api/v1/file/:id",
+							"host": [
+								"{{host:port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"file",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host:port}}/api/v1/file/download/:id",
+							"host": [
+								"{{host:port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"file",
+								"download",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host:port}}/api/v1/file/update/:id",
+							"host": [
+								"{{host:port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"file",
+								"update",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

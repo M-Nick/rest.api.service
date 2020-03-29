@@ -1,12 +1,18 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const file = sequelize.define('file', {
-    filename: DataTypes.STRING,
-    path: DataTypes.STRING,
-    filesize: DataTypes.INTEGER
-  }, {});
-  file.associate = function(models) {
+  const File = sequelize.define(
+    'File',
+    {
+      name: DataTypes.STRING,
+      size: DataTypes.INTEGER,
+      type: DataTypes.STRING,
+      encoding: DataTypes.STRING,
+      path: DataTypes.STRING,
+    },
+    {},
+  );
+  File.associate = function(models) {
     // associations can be defined here
   };
-  return file;
+  return File;
 };

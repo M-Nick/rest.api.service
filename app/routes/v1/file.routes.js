@@ -7,12 +7,22 @@ module.exports = (app) => {
 
   const router = require('express').Router();
 
-  router.post('/upload', upload.single('file'), file.upload);
-  // router.get('/list', file.files);
-  // router.delete('/delete/:id', file.delete);
-  // router.get('/:id', file.file);
-  // router.get('/download/:id', file.downloadFile);
-  // router.put('/update/update/:id');
+  router.post(
+    '/upload',
+    auth.authenticateToken,
+    upload.single('file'),
+    file.upload,
+  );
+  router.get('/list', auth.authenticateToken, file.files);
+  router.delete('/delete/:id', auth.authenticateToken, file.delete);
+  router.get('/:id', auth.authenticateToken, file.file);
+  router.get('/download/:id', auth.authenticateToken, file.downloadFile);
+  router.put(
+    '/update/:id',
+    auth.authenticateToken,
+    upload.single('file'),
+    file.update,
+  );
 
   app.use('/api/v1/file', router);
 };

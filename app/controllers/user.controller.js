@@ -7,10 +7,6 @@ const UserToken = require('../models').UserToken;
 const users = [];
 let refreshTokens = [];
 
-exports.all = (req, res) => {
-  res.json(users);
-};
-
 exports.signup = async (req, res) => {
   try {
     if (
@@ -40,7 +36,6 @@ exports.signin = async (req, res) => {
     if (await bcrypt.compare(req.body.password, user.password)) {
       const bearerToken = generateBearertoken({
         id: user.identifier,
-        password: user.password,
       });
       const refreshToken = jwt.sign(
         {
@@ -66,7 +61,7 @@ exports.updateToken = async (req, res) => {
   if (!refreshToken) {
     return res.sendStatus(401);
   }
-  if (!UserToken.findOne({ where: { refreshToken } })) {
+  if (!(await UserToken.findOne({ where: { refreshToken } }))) {
     return res.sendStatus(403);
   }
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {

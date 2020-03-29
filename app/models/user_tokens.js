@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     {},
   );
   UserToken.associate = function(models) {
-    UserToken.belongsTo(models.User, { as: 'user', foreignKey: 'userId' });
+    UserToken.belongsTo(models.User, { as: 'User' });
   };
   return UserToken;
 };

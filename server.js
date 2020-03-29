@@ -9,8 +9,6 @@ const corsOptions = {
   origin: '*',
 };
 
-app.use(express.static('./public'));
-
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
