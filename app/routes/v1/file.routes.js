@@ -1,6 +1,6 @@
 const auth = require('../../middleware/authenticate');
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: process.env.UPLOAD_PATH || 'uploads/' });
 
 module.exports = (app) => {
   const file = require('../../controllers/file.controller.js');

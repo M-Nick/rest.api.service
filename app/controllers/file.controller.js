@@ -8,8 +8,8 @@ exports.upload = async (req, res) => {
   if (file) {
     await File.create({
       name: file.originalname,
-      encoding: file.encoding,
-      type: file.mimetype,
+      extension: file.originalname.match(/.[^.]*$/)[0],
+      MIMEtype: file.mimetype,
       path: file.path,
       size: parseInt(file.size),
     });
@@ -88,8 +88,8 @@ exports.update = async (req, res) => {
       console.log(err);
     }
     file.name = newFile.originalname;
-    file.encoding = newFile.encoding;
-    file.type = newFile.mimetype;
+    file.extension = newFile.originalname.match(/.[^.]*$/)[0];
+    file.MIMEtype = newFile.mimetype;
     file.path = newFile.path;
     file.size = parseInt(newFile.size);
     await file.save();

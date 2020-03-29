@@ -11,16 +11,13 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
+      extension: {
+        type: Sequelize.STRING,
+      },
       size: {
         type: Sequelize.INTEGER,
       },
-      type: {
-        type: Sequelize.STRING,
-      },
-      encoding: {
-        type: Sequelize.STRING,
-      },
-      path: {
+      MIMEtype: {
         type: Sequelize.STRING,
       },
       createdAt: {

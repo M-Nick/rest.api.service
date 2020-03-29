@@ -1,5 +1,6 @@
 # Start
-To start the server you need to run 
+
+To start the server you need to run
 
 ```bash
 docker-compose up

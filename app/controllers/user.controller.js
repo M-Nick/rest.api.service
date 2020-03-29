@@ -89,6 +89,6 @@ exports.logout = async (req, res) => {
 
 const generateBearertoken = (user) => {
   return jwt.sign(user, process.env.BEARER_TOKEN_SECRET, {
-    expiresIn: '1m',
+    expiresIn: process.env.TOKEN_EXPIRATION || '10m',
   });
 };

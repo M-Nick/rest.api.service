@@ -4,9 +4,9 @@ module.exports = (sequelize, DataTypes) => {
     'File',
     {
       name: DataTypes.STRING,
+      extension: DataTypes.STRING,
       size: DataTypes.INTEGER,
-      type: DataTypes.STRING,
-      encoding: DataTypes.STRING,
+      MIMEtype: DataTypes.STRING,
       path: DataTypes.STRING,
     },
     {},
