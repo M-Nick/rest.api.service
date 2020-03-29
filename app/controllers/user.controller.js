@@ -74,7 +74,7 @@ exports.updateToken = async (req, res) => {
 };
 
 exports.info = (req, res) => {
-  res.json(req.user);
+  res.json(req.user.id);
 };
 
 exports.logout = async (req, res) => {

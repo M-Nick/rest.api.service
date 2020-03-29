@@ -1,6 +1,8 @@
 # Start
 
-To start the server you need to run
+To start the server you need to create .env file (you can just copy .env.example and set new tokens)
+
+And run this comands
 
 ```bash
 docker-compose up
